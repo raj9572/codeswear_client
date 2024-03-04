@@ -9,12 +9,14 @@ export const axiosClient = axios.create({
 
 
 axiosClient.interceptors.request.use((request) => {
-        return request
-    }
+    console.log('request going',request)
+    return request
+}
 )
 
 
 
-axiosClient.interceptors.response.use(
-       
-)
+axiosClient.interceptors.response.use((response) => {
+    console.log('response coming',response)
+    return response
+})

@@ -1,9 +1,32 @@
 import React, { useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { axiosClient } from '../Utils/axiosClient'
+import { KEY_ACCESS_TOKEN, KEY_REFRESH_TOKEN, setItem } from '../Utils/localStorageManage'
 
 const Login = () => {
+  const navigate = useNavigate()
   const [showPassword,setShowPassword] = useState(false)
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+
+ async function handleUserLogin(e){
+      e.preventDefault()
+      try {
+      const res= await axiosClient.post("/users/login",{username,email,password})
+        if(res.data.status === "ok"){
+          setItem(KEY_ACCESS_TOKEN,res.data.data.accessToken)
+          setItem(KEY_REFRESH_TOKEN,res.data.data.refreshToken)
+          navigate("/")
+        }
+      } catch (error) {
+        console.log('error in signup user',error)
+      }
+
+  }
+
   return (
     <>
        {/* <div className='flex justify-center items-center h-screen bg-gray-500'>
@@ -23,11 +46,21 @@ const Login = () => {
         </div>
        </div> */}
         <div className='h-screen w-full flex justify-center '>
-        <form className='w-auto  p-5 shadow-sm shadow-gray-400 h-fit md:mt-20 '>
+        <form onSubmit={handleUserLogin} className='w-auto  p-5 shadow-sm shadow-gray-400 h-fit md:mt-20 '>
           
           <label className="block">
+            <span className="block text-sm font-medium text-slate-700">username</span>
+            <input value={username} onChange={(e)=>{setUsername(e.target.value)}}  type="text"   className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+              focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+              disabled:bg-slate-50  
+              invalid:border-pink-500 invalid:text-pink-600
+              focus:invalid:border-pink-500 focus:invalid:ring-pink-500
+            "/>
+             <span className='block text-center text-lg font-medium mt-1 uppercase'>or</span>
+          </label>
+          <label className="block">
             <span className="block text-sm font-medium text-slate-700">email</span>
-            <input type="text"   className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+            <input value={email} onChange={(e)=>{setEmail(e.target.value)}}  type="email"   className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
               focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
               disabled:bg-slate-50  
               invalid:border-pink-500 invalid:text-pink-600
@@ -36,7 +69,7 @@ const Login = () => {
           </label>
           <label className="block relative">
             <span className="block text-sm font-medium text-slate-700">password</span>
-            <input type={showPassword ? "text" : "password"} autoComplete="off"   className=" mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+            <input value={password} onChange={(e)=>{setPassword(e.target.value)}} type={showPassword ? "text" : "password"} autoComplete="off"   className=" mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
               focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
               disabled:bg-slate-50  
               invalid:border-pink-500 invalid:text-pink-600
@@ -49,7 +82,7 @@ const Login = () => {
                : <FaEye onClick={()=>{setShowPassword(true)}} className='text-2xl absolute right-1 top-8 cursor-pointer' />
               }
           </label>
-          <button className='text-white font-medium px-3 py-1 bg-pink-600 rounded-lg my-2'>login</button>
+          <button onClick={handleUserLogin} className='text-white font-medium px-3 py-1 bg-pink-600 rounded-lg my-2'>login</button>
              <p className='font-medium'>do not have account ? <Link to="/signup" className='text-pink-500'>signup</Link></p>
       </form>
       
