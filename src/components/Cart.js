@@ -1,22 +1,45 @@
 import React from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import CartItems from './CartItems'
+import { useDispatch, useSelector } from 'react-redux'
+import {openCart} from '../redux/Slice/appConfigSlice'
+import { useNavigate } from 'react-router-dom'
 const Cart = ({onClose}) => {
+    const cartItem = useSelector(state => state.cartReducer.cart)
+    const Total = cartItem?.reduce((x,item)=> x + item.price * item.quantity,0 )
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    function checkOutSession(){
+        dispatch(openCart(false))
+        navigate("/checkout")
+    }
+
     return (
 
         <div className=' fixed top-0 left-0 h-full w-full z-40 flex justify-end'>
-            <div className='absolute top-0 left-0 w-full h-full bg-black opacity-55 ' onClick={onClose}></div>
+            <div className='absolute top-0 left-0 w-full h-full bg-black opacity-55 ' onClick={()=>{dispatch(openCart(false))}}></div>
 
             <div className='animate-[wiggle_1s_ease-in-out_forwards] h-screen relative w-80 px-2  z-50  bg-white  '>
                     {/* header section */}
                 <div className='h-12 py-6 flex justify-between items-center border-b-2 border-gray-400'>
                     <h3 className='text-black text-xl font-medium'>Shoping Cart</h3>
-                    <div onClick={onClose} className='cursor-pointer hover:text-gray-500 text-balck text-lg font-normal flex items-center gap-x-1 '><AiOutlineClose className='w-7 h-5 ' /> close</div>
+                    <div onClick={()=>dispatch(openCart(false))} className='cursor-pointer hover:text-gray-500 text-balck text-lg font-normal flex items-center gap-x-1 '><AiOutlineClose className='w-7 h-5 ' /> close</div>
                 </div>
                     {/* cart section */}
                 <div>
-                    <CartItems/>
-                    <CartItems/>
+                   {
+                    cartItem?.map(item => <CartItems key={item._id} cart={item}/>)
+                   }
+                </div>
+
+                <div className='flex justify-between md:mt-5 border-t-2 border-gray-400'>
+                    <h3 className='text-black font-semibold text-lg'>Total</h3>
+                    <h3 className='text-black font-semibold text-lg'>₹ {Total}</h3>
+                </div>
+
+                <div  onClick={()=>{checkOutSession()}} className='bg-pink-600 py-1 px-3 w-full font-medium text-lg rounded-xl text-center text-white md:my-4 cursor-pointer hover:bg-pink-800 ' >
+                    CheckOut Now
                 </div>
 
             </div>

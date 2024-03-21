@@ -16,9 +16,9 @@ const Login = () => {
       e.preventDefault()
       try {
       const res= await axiosClient.post("/users/login",{username,email,password})
-        if(res.data.status === "ok"){
-          setItem(KEY_ACCESS_TOKEN,res.data.data.accessToken)
-          setItem(KEY_REFRESH_TOKEN,res.data.data.refreshToken)
+        if(res.status === "ok"){
+          setItem(KEY_ACCESS_TOKEN,res.data.accessToken)
+          setItem(KEY_REFRESH_TOKEN,res.data.refreshToken)
           navigate("/")
         }
       } catch (error) {

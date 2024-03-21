@@ -16,7 +16,7 @@ const Signup = () => {
       e.preventDefault()
       try {
       const res= await axiosClient.post("/users/signup",{fullName,username,email,password})
-        if(res.data.status === "ok"){
+        if(res.status === "ok"){
           console.log('user register successfully')
           navigate("/login")
         }
