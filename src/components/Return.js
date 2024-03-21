@@ -49,7 +49,7 @@ const Return = () => {
   
     if (status === 'complete') {
        return (
-        <Navigate to="/success"/>
+        <Navigate to="/orders"/>
        )
     }
   

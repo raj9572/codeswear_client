@@ -19,14 +19,12 @@ export const getCurrentUser = createAsyncThunk('user/current-user', async (body,
 
 export const updateMyProfile = createAsyncThunk('users/update-account', async (body, thunkAPI) => {
   try {
-      const response = await axiosClient.put('/users/update-account', body)
-      window.location.reload()
-      return response.result;
-
-
+   
+      const response = await axiosClient.patch('/users/update-account', body)
+       return response.data
 
   } catch (error) {
-      return Promise.reject(error)
+      console.log('error in update profile',error)
   }
   
 
@@ -103,6 +101,9 @@ export const appConfigeSlice = createSlice({
 
         .addCase(getWishListProduct.fulfilled, (state, action) => {
           state.wishListProducts = action.payload
+      })
+        .addCase(updateMyProfile.fulfilled, (state, action) => {
+          state.myProfile = action.payload
       })
         
 }
