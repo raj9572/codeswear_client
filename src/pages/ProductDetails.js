@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import product_details from '../assests/product-details.webp'
+// import product_details from '../assests/product-details.webp'
 import { useNavigate, useParams } from 'react-router-dom'
 import { axiosClient } from '../Utils/axiosClient'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, removeFromCart } from '../redux/Slice/cartSlice'
 import { WishListProduct, openCart } from '../redux/Slice/appConfigSlice'
+import Product from '../components/Product'
 import { FcLike } from 'react-icons/fc'
 import { FaHeart } from 'react-icons/fa'
 
@@ -12,22 +13,27 @@ const ProductDetails = () => {
   const params = useParams()
   const navigate = useNavigate()
   const [product, setProduct] = useState(null)
+  const [reletedProducts, setReletedProducts] = useState([])
   const [varient, setVarient] = useState("S")
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cartReducer.cart)
   const cartProduct = cart.filter(item => item?._id === params?.productId)
   const user = useSelector(state => state.appConfigReducer.myProfile)
-  // console.log(cartProduct)
 
 
   async function fetchProductDetails() {
     const res = await axiosClient.get(`/products/${params?.productId}`)
     // console.log("response",res.data)
-    setProduct(res.data)
+    setProduct(res.data.productDetails)
+    setReletedProducts(res.data.reletedProducts)
   }
 
+
+
   useEffect(() => {
-    fetchProductDetails()
+    if(params.productId ){
+      fetchProductDetails()
+    }
   }, [params.productId])
 
   function handleVarientChange(item) {
@@ -87,6 +93,32 @@ const ProductDetails = () => {
 
 
 
+      </div>
+
+      <div className=' flex flex-col items-center max-w-[1200px] mx-auto border-2 border-gray-500'>
+            <h1 className='text-3xl font-medium '>
+              Releted Products
+              <div className='border-2 border-pink-600 w-[50%] '></div>
+              </h1>
+
+              <div className='marquee relative w-full h-[420px] overflow-hidden'>
+                <div className='
+                flex flex-row justify-center gap-8
+                 absolute whitespace-nowrap will-change-transform
+                 w-[180%]
+                 animate-[marquee_15s_linear_infinite]
+                 
+                   '>
+                    {
+                      reletedProducts?.map(product=>(
+                        <Product key={product._id} product={product}/>
+                      ))
+                    }
+                </div>
+              </div>
+              
+            
+            
       </div>
     </>
   )

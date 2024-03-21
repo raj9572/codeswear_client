@@ -3,17 +3,13 @@ import { AiOutlineClose } from 'react-icons/ai'
 import CartItems from './CartItems'
 import { useDispatch, useSelector } from 'react-redux'
 import {openCart} from '../redux/Slice/appConfigSlice'
-import { useNavigate } from 'react-router-dom'
+import CheckOut from './CheckOut'
 const Cart = ({onClose}) => {
     const cartItem = useSelector(state => state.cartReducer.cart)
     const Total = cartItem?.reduce((x,item)=> x + item.price * item.quantity,0 )
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
-    function checkOutSession(){
-        dispatch(openCart(false))
-        navigate("/checkout")
-    }
+    
 
     return (
 
@@ -38,9 +34,8 @@ const Cart = ({onClose}) => {
                     <h3 className='text-black font-semibold text-lg'>₹ {Total}</h3>
                 </div>
 
-                <div  onClick={()=>{checkOutSession()}} className='bg-pink-600 py-1 px-3 w-full font-medium text-lg rounded-xl text-center text-white md:my-4 cursor-pointer hover:bg-pink-800 ' >
-                    CheckOut Now
-                </div>
+                <CheckOut cart={cartItem}/>
+               
 
             </div>
         </div>

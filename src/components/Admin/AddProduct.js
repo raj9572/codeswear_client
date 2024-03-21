@@ -36,6 +36,7 @@ const AddProduct = () => {
      if(res.status === "ok"){
        dispatch(showToast({type:TOAST_SUCCESS,message:res.message}))
        dispatch(setLoading(false))
+       
      }
      else{ 
       dispatch(showToast({type:TOAST_FAILURE,message:res.message}))

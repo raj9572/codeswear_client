@@ -43,7 +43,7 @@ const Return = () => {
   
     if (status === 'open') {
       return (
-        <Navigate to="/cart" />
+        <Navigate to="/" />
       )
     }
   

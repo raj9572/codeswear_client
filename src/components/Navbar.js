@@ -3,7 +3,7 @@ import logo from '../assests/logo.png'
 import { FaUserCircle } from "react-icons/fa";
 import { BsCart2 } from "react-icons/bs";
 import Cart from './Cart';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { KEY_ACCESS_TOKEN, KEY_REFRESH_TOKEN, removeItem } from '../Utils/localStorageManage';
 import { axiosClient } from '../Utils/axiosClient';
@@ -12,6 +12,7 @@ import { FaSearch } from "react-icons/fa";
 
 const Navbar = () => {
     // const [openCart , setOpenCart] = useState(false)
+    const pathname = useLocation()
     const [query, setQuery] = useState('')
     const [dropdown,setDropdown] = useState(false)
     const cartItem = useSelector(state => state.cartReducer.cart)
@@ -20,7 +21,7 @@ const Navbar = () => {
     const categories = useSelector(state => state.productReducer.categories)
     const dispatch = useDispatch()
     const cartOpen = useSelector(state => state.appConfigReducer.openCart)
-
+    
 
    async function handleLogout (){
     try {
@@ -58,7 +59,7 @@ const Navbar = () => {
                 <ul className='md:flex gap-2 hidden'>
                     {
                         categories?.map(category=>(
-                            <Link key={category._id} to={`/categories/${category.category}`}  className='mx-4 text-black font-semibold text-xl cursor-pointer'>{ category.category.charAt(0).toUpperCase() + category.category.slice(1)}</Link>
+                            <Link key={category._id} to={`/categories/${category.category}`}  className={` hover:text-pink-700 mx-4  font-semibold text-xl cursor-pointer ${pathname === `/categories/${category.category}` && "text-pink-800" } `}>{ category.category.charAt(0).toUpperCase() + category.category.slice(1)}</Link>
                         ))
                     }
                     {/* <Link to="/categories/hoodies" className='mx-4 text-black font-semibold text-xl cursor-pointer'>Hoodies</Link>
