@@ -4,7 +4,7 @@ import productReducer from './Slice/productSlice'
 import cartReducer from './Slice/cartSlice'
 import userConfigReducer from './Slice/userSlice'
 import orderReducer from './Slice/orderSlice'
- const store = configureStore({
+export default configureStore({
   reducer: {
     appConfigReducer,
     productReducer,
@@ -14,4 +14,4 @@ import orderReducer from './Slice/orderSlice'
   },
 })
 
-export default store
+ 

@@ -7,20 +7,23 @@ export const axiosClient = axios.create({
 })
 
 
+
+
 axiosClient.interceptors.request.use((request) => {
     const accessToken = getItem(KEY_ACCESS_TOKEN);
      request.headers['Authorization'] = `Bearer ${accessToken}`
-    return request
-}
-)
-
-
-
-axiosClient.interceptors.response.use((response) => {
-
+     return request
+    }
+    )
+    
+    
+    
+    axiosClient.interceptors.response.use((response) => {
+        
         const data = response.data;
         console.log('axios client data',data)
         if (data.status === 'ok') {
+
             return data
         }
 })

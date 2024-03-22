@@ -6,10 +6,13 @@ import { axiosClient } from '../../Utils/axiosClient';
 export const getCurrentUser = createAsyncThunk('user/current-user', async (body, thunkAPI) => {
 
   try {
-      const response = await axiosClient.get('/users/current-user')
-      //  console.log('slice response',response.data)
-      return response.data;
+    thunkAPI.dispatch(setLoading(true))
+    const response = await axiosClient.get('/users/current-user')
+    thunkAPI.dispatch(setLoading(false))
+    //  console.log('slice response',response.data)
+    return response.data;
   } catch (error) {
+    thunkAPI.dispatch(setLoading(false))
       return Promise.reject(error)
   }
   
@@ -57,6 +60,8 @@ export const getWishListProduct = createAsyncThunk('products/getWishlist', async
 
 }
 )
+
+
 
 
 export const appConfigeSlice = createSlice({
@@ -110,6 +115,5 @@ export const appConfigeSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setLoading, showToast,openCart } = appConfigeSlice.actions
-
 export default appConfigeSlice.reducer
+export const { setLoading, showToast,openCart } = appConfigeSlice.actions

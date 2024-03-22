@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { axiosClient } from '../../Utils/axiosClient';
+import { setLoading } from './appConfigSlice';
 
 
 
@@ -52,10 +53,13 @@ export const fetchAllCustomers = createAsyncThunk('orders/all-customers', async 
 export const fetchMyOrders = createAsyncThunk('orders/my-order', async (body, thunkAPI) => {
 
   try {
-      const response = await axiosClient.get(`/orders/my-orders`)
+    thunkAPI.dispatch(setLoading(true))
+    const response = await axiosClient.get(`/orders/my-orders`)
+    thunkAPI.dispatch(setLoading(false))
     //    console.log('orderlist response',response)
-      return response
+    return response
   } catch (error) {
+    thunkAPI.dispatch(setLoading(false))
       return Promise.reject(error)
   }
 

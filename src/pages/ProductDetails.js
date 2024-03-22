@@ -4,10 +4,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { axiosClient } from '../Utils/axiosClient'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, removeFromCart } from '../redux/Slice/cartSlice'
-import { WishListProduct, openCart } from '../redux/Slice/appConfigSlice'
+import { WishListProduct, openCart, setLoading } from '../redux/Slice/appConfigSlice'
 import Product from '../components/Product'
 import { FcLike } from 'react-icons/fc'
 import { FaHeart } from 'react-icons/fa'
+import ReletedProduct from '../components/ReletedProduct'
 
 const ProductDetails = () => {
   const params = useParams()
@@ -22,10 +23,19 @@ const ProductDetails = () => {
 
 
   async function fetchProductDetails() {
-    const res = await axiosClient.get(`/products/${params?.productId}`)
+    try {
+      dispatch(setLoading(true))
+      const res = await axiosClient.get(`/products/${params?.productId}`)
+
+      setProduct(res.data.productDetails)
+      setReletedProducts(res.data.reletedProducts)
+      
+      dispatch(setLoading(false))
+
+    } catch (error) {
+      dispatch(setLoading(false))
+    }
     // console.log("response",res.data)
-    setProduct(res.data.productDetails)
-    setReletedProducts(res.data.reletedProducts)
   }
 
 
@@ -120,6 +130,10 @@ const ProductDetails = () => {
             
             
       </div>
+
+        <div className='max-w-[1200px] mx-auto' >
+        <ReletedProduct reletedProducts = {reletedProducts}/>
+        </div>
     </>
   )
 }

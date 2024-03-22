@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { axiosClient } from '../../Utils/axiosClient';
 import Swal from 'sweetalert2'
+import { setLoading } from './appConfigSlice';
 
 
 export const getAllProduct = createAsyncThunk('product/get-all-product', async (body, thunkAPI) => {
@@ -53,10 +54,13 @@ export const deleteSingleProduct = createAsyncThunk('product/delete-product', as
 export const getProductById = createAsyncThunk('product/get-product-details', async (body, thunkAPI) => {
 
   try {
-      const response = await axiosClient.get(`/products/${body}`)
-      //  console.log('slice response',response.data)
-      return response
-  } catch (error) {
+    thunkAPI.dispatch(setLoading(true))
+    const response = await axiosClient.get(`/products/${body}`)
+    //  console.log('slice response',response.data)
+    thunkAPI.dispatch(setLoading(false))
+    return response
+} catch (error) {
+      thunkAPI.dispatch(setLoading(false))
       return Promise.reject(error)
   }
 
