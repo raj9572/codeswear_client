@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 // import product_details from '../assests/product-details.webp'
 import { useNavigate, useParams } from 'react-router-dom'
-import { axiosClient } from '../Utils/axiosClient'
+import { axiosClient, createAxiosClient } from '../Utils/axiosClient'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, removeFromCart } from '../redux/Slice/cartSlice'
 import { WishListProduct, openCart, setLoading } from '../redux/Slice/appConfigSlice'
@@ -10,6 +10,7 @@ import { FcLike } from 'react-icons/fc'
 import { FaHeart } from 'react-icons/fa'
 import ReletedProduct from '../components/ReletedProduct'
 import ReviewSection from '../components/ReviewSection'
+import { store } from '../redux/store'
 
 const ProductDetails = () => {
   const params = useParams()
@@ -24,17 +25,18 @@ const ProductDetails = () => {
 
 
   async function fetchProductDetails() {
+    const axiosClient = createAxiosClient(store)
     try {
-      dispatch(setLoading(true))
+      // dispatch(setLoading(true))
       const res = await axiosClient.get(`/products/${params?.productId}`)
 
       setProduct(res.data.productDetails)
       setReletedProducts(res.data.reletedProducts)
 
-      dispatch(setLoading(false))
+      // dispatch(setLoading(false))
 
     } catch (error) {
-      dispatch(setLoading(false))
+      // dispatch(setLoading(false))
     }
     // console.log("response",res.data)
   }

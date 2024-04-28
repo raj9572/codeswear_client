@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { axiosClient } from '../../Utils/axiosClient';
+import { axiosClient, createAxiosClient } from '../../Utils/axiosClient';
 import Swal from 'sweetalert2'
 import { setLoading } from './appConfigSlice';
+import { store } from '../store';
 
 
 export const getAllProduct = createAsyncThunk('product/get-all-product', async (body, thunkAPI) => {
-
+         const axiosClient = createAxiosClient(store)
   try {
        
       const response = await axiosClient.get('/products/all-products')

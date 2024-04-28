@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 
 export const getAllUsers = createAsyncThunk('user/get-all-user', async (body, thunkAPI) => {
-
+        
   try {
       const response = await axiosClient.get('/users/getallusers')
       //  console.log('slice response',response.data)
