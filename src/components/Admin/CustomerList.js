@@ -12,6 +12,7 @@ const CustomerList = () => {
 
   return (
     <div>
+      
       <table className="w-full border-collapse border border-slate-500 ...">
       <thead>
         <tr>

@@ -16,6 +16,7 @@ const AdminScreen = () => {
             <button onClick={() => { navigate("/admin/add-product") }} className=' md:text-2xl font-base font-medium text-white hover:bg-pink-600 bg-pink-500 md:w-full w-1/4 md:h-28'>Add Product</button>
             <button onClick={() => { navigate("/admin/orders") }} className=' md:text-2xl font-base font-medium text-white hover:bg-pink-600 bg-pink-500 md:w-full w-1/4 md:h-28'>All Orders</button>
             <button onClick={() => { navigate("/admin/customers") }} className=' md:text-2xl font-base font-medium text-white hover:bg-pink-600 bg-pink-500 md:w-full w-1/4 md:h-28'>All Customer</button>
+            <button onClick={() => { navigate("/admin/create-category") }} className=' md:text-2xl font-base font-medium text-white hover:bg-pink-600 bg-pink-500 md:w-full w-1/4 md:h-28'>Create Category</button>
           </div>
 
           <div className='md:col-span-10 md:p-6 p-2  border-2 border-pink-500 min-h-[400px]'>

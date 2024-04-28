@@ -9,6 +9,7 @@ import Product from '../components/Product'
 import { FcLike } from 'react-icons/fc'
 import { FaHeart } from 'react-icons/fa'
 import ReletedProduct from '../components/ReletedProduct'
+import ReviewSection from '../components/ReviewSection'
 
 const ProductDetails = () => {
   const params = useParams()
@@ -29,7 +30,7 @@ const ProductDetails = () => {
 
       setProduct(res.data.productDetails)
       setReletedProducts(res.data.reletedProducts)
-      
+
       dispatch(setLoading(false))
 
     } catch (error) {
@@ -38,10 +39,10 @@ const ProductDetails = () => {
     // console.log("response",res.data)
   }
 
-
+  console.log('releted', reletedProducts)
 
   useEffect(() => {
-    if(params.productId ){
+    if (params.productId) {
       fetchProductDetails()
     }
   }, [params.productId])
@@ -87,9 +88,9 @@ const ProductDetails = () => {
           <div className='flex gap-2'>
             <button onClick={() => dispatch(addToCart({ product, varient }))} className=' w-[10rem] py-2 px-5 bg-purple-800 font-medium text-lg rounded-md text-white my-5 transition delay-150 ease-in-out hover:bg-purple-700 '>Add to cart</button>
             <button onClick={() => handleBuyNow(product, varient)} className=' w-[10rem] py-2 px-5 bg-purple-800 font-medium text-lg rounded-md text-white my-5 transition delay-150 ease-in-out hover:bg-purple-700 '>Buy now</button>
-          { user?.wishlist?.includes(product?._id)
-           ? <button onClick={() => navigate("/wishlist")} className=' min-w-[10rem] py-2 px-5 bg-purple-800 font-medium text-lg rounded-md text-white my-5 transition delay-150 ease-in-out hover:bg-purple-700 uppercase flex gap-x-2 items-center '> <FcLike className='w-6 h-6' /> WishListed  </button>
-           : <button onClick={() => dispatch(WishListProduct(product?._id))} className=' min-w-[10rem] py-2 px-5 bg-purple-800 font-medium text-lg rounded-md text-white my-5 transition delay-150 ease-in-out hover:bg-purple-700 uppercase flex gap-x-2 items-center '> <FaHeart className='w-6 h-6' /> WishList  </button>
+            {user?.wishlist?.includes(product?._id)
+              ? <button onClick={() => navigate("/wishlist")} className=' min-w-[10rem] py-2 px-5 bg-purple-800 font-medium text-lg rounded-md text-white my-5 transition delay-150 ease-in-out hover:bg-purple-700 uppercase flex gap-x-2 items-center '> <FcLike className='w-6 h-6' /> WishListed  </button>
+              : <button onClick={() => dispatch(WishListProduct(product?._id))} className=' min-w-[10rem] py-2 px-5 bg-purple-800 font-medium text-lg rounded-md text-white my-5 transition delay-150 ease-in-out hover:bg-purple-700 uppercase flex gap-x-2 items-center '> <FaHeart className='w-6 h-6' /> WishList  </button>
             }
 
           </div>
@@ -105,7 +106,7 @@ const ProductDetails = () => {
 
       </div>
 
-      <div className=' flex flex-col items-center max-w-[1200px] mx-auto border-2 border-gray-500'>
+      {/* { reletedProducts.length !== 0 && <div className=' flex flex-col items-center max-w-[1200px] mx-auto border-2 border-gray-500'>
             <h1 className='text-3xl font-medium '>
               Releted Products
               <div className='border-2 border-pink-600 w-[50%] '></div>
@@ -130,10 +131,27 @@ const ProductDetails = () => {
             
             
       </div>
+      } */}
 
-        <div className='max-w-[1200px] mx-auto' >
-        <ReletedProduct reletedProducts = {reletedProducts}/>
-        </div>
+      <div className='max-w-[1200px] mx-auto  my-8 shadow-4xl p-4' >
+        <ReviewSection product={product} />
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+      {reletedProducts?.length !== 0 && (<div className='max-w-[1200px] mx-auto  my-8 ' >
+        <div className='text-2xl font-bold mb-8'>You Might Also Like</div>
+        <ReletedProduct reletedProducts={reletedProducts} />
+      </div>)}
     </>
   )
 }

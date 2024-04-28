@@ -18,24 +18,24 @@ const Orders = () => {
       <div className='flex flex-col items-center gap-2 p-4'>
         <h1 className='text-2xl text-black font-medium '>Order details</h1>
         <div className='border-2 border-pink-600 w-24'></div>
-        <table class="border-collapse border border-slate-500  w-full md:mt-4">
+        <table className="border-collapse border border-slate-500  w-full md:mt-4">
           <thead className='p-2 text-xl text-pink-600 '>
             <tr>
-              <th class="border border-slate-600 ...">Order</th>
-              <th class="border border-slate-600 ...">Product</th>
-              <th class="border border-slate-600 ...">Total($)</th>
-              <th class="border border-slate-600 ...">Created At</th>
+              <th className="border border-slate-600 ...">Order</th>
+              <th className="border border-slate-600 ...">Product</th>
+              <th className="border border-slate-600 ...">Total($)</th>
+              <th className="border border-slate-600 ...">Created At</th>
             </tr>
           </thead>
           <tbody className=''>
             {orders?.map((order) => (
               <tr key={order._id} className='text-lg font-medium text-gray-600' >
-                <td class="border border-slate-700 p-4">
+                <td className="border border-slate-700 p-4">
                   <Link to={`/orders/${order._id}`} className='text-pink-500'> {order._id}</Link>
                 </td>
-                <td class="border border-slate-700 p-4">{order?.products}</td>
-                <td class="border border-slate-700 p-4">₹ {order.totalAmount}</td>
-                <td class="border border-slate-700 p-4">{order.createdAt}</td>
+                <td className="border border-slate-700 p-4">{order?.products}</td>
+                <td className="border border-slate-700 p-4">₹ {order.totalAmount}</td>
+                <td className="border border-slate-700 p-4">{order.createdAt}</td>
               </tr>
             ))}
 

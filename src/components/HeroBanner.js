@@ -13,7 +13,7 @@ const HeroBanner = () => {
       autoPlay={true}
       infiniteLoop={true}
       showThumbs={false}
-      stopOnHover={true}
+    //   stopOnHover={true}
       showStatus={false}
       transitionTime={1000}
       showArrows={false}

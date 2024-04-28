@@ -19,8 +19,10 @@ const EditProduct = () => {
     const [productImage, setProductImage] = useState('')
     const dispatch = useDispatch()
     const params = useParams()
-    const product_details = useSelector(state => state.productReducer.productDetails)
-
+    const productDetails = useSelector(state => state.productReducer.productDetails)
+    const {productDetails:product_details} = productDetails
+   
+   
     useEffect(() => {
         if (product_details?._id === params?.productId) {
             setTitle(product_details.title)
@@ -38,7 +40,7 @@ const EditProduct = () => {
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [params?.productId, product_details])
+    }, [params?.productId,product_details])
 
     async function handleEditProduct(e) {
         e.preventDefault()

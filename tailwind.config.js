@@ -14,6 +14,10 @@ module.exports = {
           from: { transform: 'translateX(0%)' },
           to: { transform: 'translateX(-50%)' },
         },
+      },
+      boxShadow: {
+        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
+        '4xl':'15px 10px 50px -10px rgba(0,0,0,0.3)'
       }
     },
   },

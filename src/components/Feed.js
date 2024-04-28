@@ -7,27 +7,27 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchCategory, getAllProduct } from '../redux/Slice/productSlice'
 
 const Feed = () => {
-    const collections = [
-        {  _id:"385058",
-           category:"tshirt",
-           url:"https://res.cloudinary.com/dic1czm4k/image/upload/v1709561940/codeswear%20Images/iauq5f1tjptjbwmykewb.webp"
-        },
-        {
-           _id:"304937",
-           category:"hoodies",
-           url:"https://res.cloudinary.com/dic1czm4k/image/upload/v1709561626/codeswear%20Images/q6phytctzfyi4omgls5g.jpg"
-        },
-        {
-           _id:"485790",
-           category:"sticker",
-           url:"https://res.cloudinary.com/dic1czm4k/image/upload/v1709563011/codeswear%20Images/b4zxkmjaupvpzkcpksw1.jpg"
-        },
-        {
-           _id:"483985",
-           category:"mug",
-           url:"https://res.cloudinary.com/dic1czm4k/image/upload/v1709562558/codeswear%20Images/v40myss8rbfpq8peuwss.jpg"
-        },
-   ]
+  //   const collections = [
+  //       {  _id:"385058",
+  //          category:"tshirt",
+  //          url:"https://res.cloudinary.com/dic1czm4k/image/upload/v1709561940/codeswear%20Images/iauq5f1tjptjbwmykewb.webp"
+  //       },
+  //       {
+  //          _id:"304937",
+  //          category:"hoodies",
+  //          url:"https://res.cloudinary.com/dic1czm4k/image/upload/v1709561626/codeswear%20Images/q6phytctzfyi4omgls5g.jpg"
+  //       },
+  //       {
+  //          _id:"485790",
+  //          category:"sticker",
+  //          url:"https://res.cloudinary.com/dic1czm4k/image/upload/v1709563011/codeswear%20Images/b4zxkmjaupvpzkcpksw1.jpg"
+  //       },
+  //       {
+  //          _id:"483985",
+  //          category:"mug",
+  //          url:"https://res.cloudinary.com/dic1czm4k/image/upload/v1709562558/codeswear%20Images/v40myss8rbfpq8peuwss.jpg"
+  //       },
+  //  ]
    const dispatch = useDispatch()
    const topProducts = useSelector(state => state.productReducer.isTopProduct)
    const categories = useSelector(state => state.productReducer.categories) 

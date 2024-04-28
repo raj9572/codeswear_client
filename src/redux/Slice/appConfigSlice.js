@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { axiosClient } from '../../Utils/axiosClient';
+import { TOAST_SUCCESS } from '../../App';
 
 
 
@@ -24,6 +25,7 @@ export const updateMyProfile = createAsyncThunk('users/update-account', async (b
   try {
    
       const response = await axiosClient.patch('/users/update-account', body)
+      thunkAPI.dispatch(showToast({type:TOAST_SUCCESS,message:"user profile updated"}))
        return response.data
 
   } catch (error) {
@@ -92,9 +94,9 @@ export const appConfigeSlice = createSlice({
         })
         .addCase(WishListProduct.fulfilled, (state, action) => {
             const productId  = action.payload._id
-            console.log(productId)
+            // console.log(productId)
             const index = state.myProfile?.wishlist?.findIndex(item => item === productId)
-            console.log(index)
+            // console.log(index)
             if(index !== -1){
               state.myProfile.wishlist = state.myProfile?.wishlist?.filter(item => item !== productId)
               state.wishListProducts = state.wishListProducts?.filter(item => item._id !== productId)

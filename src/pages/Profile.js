@@ -136,7 +136,7 @@ const Profile = () => {
 
         </form>
         {error && <p className='text-red-500 text-sm font-medium '>{error}</p> }
-        <button onClick={handleUpdatePassword} disabled={oldPassword==="" || newPassword==="" || verifyPassword===""} className='text-lg font-semibold text-white mx-2 my-4 bg-pink-600 hover:bg-pink-700 rounded-2xl py-1 px-3'>Submit</button>
+        <button onClick={handleUpdatePassword} disabled={oldPassword.length < 3 || newPassword.length < 3 || verifyPassword.length < 3} className='text-lg font-semibold text-white mx-2 my-4 bg-pink-600 hover:bg-pink-700 rounded-2xl py-1 px-3'>Submit</button>
       </div>
     </>
   )

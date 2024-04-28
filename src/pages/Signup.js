@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { axiosClient } from '../Utils/axiosClient'
+import { toast } from 'react-toastify'
 
 const Signup = () => {
   const navigate = useNavigate()
@@ -22,6 +23,7 @@ const Signup = () => {
         }
       } catch (error) {
         console.log('error in signup user',error)
+        toast.error(error.response.data.message)
       }
   }
 

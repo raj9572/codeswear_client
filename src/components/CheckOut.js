@@ -22,6 +22,8 @@ const CheckOut = ({ cart }) => {
         }
       )
 
+      console.log('response',res)
+
       const stripe = await stripePromise;
       const { error } = await stripe.redirectToCheckout({
         sessionId: res.data.sessionId
@@ -41,6 +43,7 @@ const CheckOut = ({ cart }) => {
     
     <div className='bg-pink-600 py-1 px-3 w-full font-medium text-lg rounded-xl text-center text-white md:my-4 cursor-pointer hover:bg-pink-800 ' >
       <button onClick={CreateCheckOutSession}>checkOut</button>
+      <p className='text-red-500 text-sm font-medium'>{error}</p>
     </div>
   )
 }

@@ -30,6 +30,7 @@ import CustomerList from './components/Admin/CustomerList';
 import OrderDetails from './components/Admin/OrderDetails';
 import Search from './pages/Search';
 import Wishlist from './pages/Wishlist';
+import Create_Category from './components/Admin/Create_Category';
 export const TOAST_SUCCESS = 'toast_success'
 export const TOAST_FAILURE = 'toast_failure'
 
@@ -93,6 +94,7 @@ function App() {
               <Route path='orders' element={<OrderList />}></Route>
               <Route path='orders/:orderId' element={<OrderDetails />}></Route>
               <Route path='customers' element={<CustomerList />}></Route>
+              <Route path='create-category' element={<Create_Category />}></Route>
             </Route>
 
           </Route>
