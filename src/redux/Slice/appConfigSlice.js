@@ -52,7 +52,6 @@ export const WishListProduct = createAsyncThunk('products/wishlist', async (body
 export const getWishListProduct = createAsyncThunk('products/getWishlist', async (body, thunkAPI) => {
 
   try {
-      
       const response = await axiosClient.get(`/products/getwishlist/wishlistproducts`)
       //  console.log('wishlist response',response)
       return response.data

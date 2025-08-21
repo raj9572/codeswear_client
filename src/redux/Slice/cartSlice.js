@@ -15,9 +15,9 @@ export const cartSlice = createSlice({
 
   reducers: {
     addToCart : (state,action)=>{
-        console.log(action.payload)
+        // console.log(action.payload)
         const curItem = action.payload
-        console.log(curItem.varient)
+        // console.log(curItem.varient)
         const addedProduct = {
             _id:curItem.product._id,
             varient:curItem.varient ? curItem.varient : curItem.product?.varient,

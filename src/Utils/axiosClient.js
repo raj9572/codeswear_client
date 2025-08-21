@@ -23,7 +23,7 @@ export const createAxiosClient = (store) => {
         axiosClient.interceptors.response.use((response) => {
             store.dispatch(setLoading(false))
             const data = response.data;
-            console.log('axios client data',data)
+            // console.log('axios client data',data)
             if (data.status === 'ok') {
     
                 return data
@@ -57,7 +57,7 @@ axiosClient.interceptors.request.use((request) => {
     
     axiosClient.interceptors.response.use((response) => {
         const data = response.data;
-        console.log('axios client data',data)
+        // console.log('axios client data',data)
         if (data.status === 'ok') {
 
             return data

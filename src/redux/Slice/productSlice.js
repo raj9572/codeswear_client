@@ -85,7 +85,7 @@ export const fetchCategory = createAsyncThunk('categories/fetch-category', async
   try {
       
       const response = await axiosClient.get(`/categories/fetch-category`)
-      //  console.log('slice response',response.data)
+       console.log('slice response',response.data)
       return response
   } catch (error) {
       return Promise.reject(error)

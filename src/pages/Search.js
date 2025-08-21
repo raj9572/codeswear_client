@@ -17,7 +17,7 @@ const Search = () => {
     async function fetchSearchProduct(query){
             try {
                  const res = await axiosClient.get(`/products/search/${query}`)
-                 console.log(res)
+               //   console.log(res)
                  const result = res.data
                  setProducts(result)
             } catch (error) {

@@ -18,7 +18,7 @@ const Signup = () => {
       try {
       const res= await axiosClient.post("/users/signup",{fullName,username,email,password})
         if(res.status === "ok"){
-          console.log('user register successfully')
+          // console.log('user register successfully')
           navigate("/login")
         }
       } catch (error) {

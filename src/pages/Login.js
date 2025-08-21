@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { axiosClient } from '../Utils/axiosClient'
-import { KEY_ACCESS_TOKEN, KEY_REFRESH_TOKEN, setItem } from '../Utils/localStorageManage'
+// import { KEY_ACCESS_TOKEN, KEY_REFRESH_TOKEN, setItem } from '../Utils/localStorageManage'
+import { KEY_ACCESS_TOKEN,  setItem } from '../Utils/localStorageManage'
 import { toast } from 'react-toastify'
 
 const Login = () => {
@@ -19,7 +20,7 @@ const Login = () => {
       const res= await axiosClient.post("/users/login",{username,email,password})
         if(res.status === "ok"){
           setItem(KEY_ACCESS_TOKEN,res.data.accessToken)
-          setItem(KEY_REFRESH_TOKEN,res.data.refreshToken)
+          // setItem(KEY_REFRESH_TOKEN,res.data.refreshToken)
           navigate("/")
         }
       } catch (error) {
