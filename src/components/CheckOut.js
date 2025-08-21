@@ -22,7 +22,7 @@ const CheckOut = ({ cart }) => {
         }
       )
 
-      console.log('response',res)
+      // console.log('response',res)
 
       const stripe = await stripePromise;
       const { error } = await stripe.redirectToCheckout({
