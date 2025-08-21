@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import topRatedProduct from '../assests/topRatedProduct.webp'
 import { useNavigate } from 'react-router-dom'

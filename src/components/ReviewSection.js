@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { Rating } from '@smastrom/react-rating'
 import { axiosClient } from '../Utils/axiosClient'

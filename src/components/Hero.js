@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import heroimg from '../assests/heroimg.png'
 import mobileHero from '../assests/mobileHero.webp'

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 // import product_details from '../assests/product-details.webp'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -41,7 +43,7 @@ const ProductDetails = () => {
     // console.log("response",res.data)
   }
 
-  console.log('releted', reletedProducts)
+  // console.log('releted', reletedProducts)
 
   useEffect(() => {
     if (params.productId) {

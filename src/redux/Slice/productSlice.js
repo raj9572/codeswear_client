@@ -70,7 +70,7 @@ export const getProductById = createAsyncThunk('product/get-product-details', as
 export const updateProductDetails = createAsyncThunk('product/update-product-details', async (body, thunkAPI) => {
 
   try {
-      console.log(body)
+      // console.log(body)
       const response = await axiosClient.put(`/products/updateproduct`,{body})
       //  console.log('slice response',response.data)
       return response
@@ -85,7 +85,7 @@ export const fetchCategory = createAsyncThunk('categories/fetch-category', async
   try {
       
       const response = await axiosClient.get(`/categories/fetch-category`)
-       console.log('slice response',response.data)
+      //  console.log('slice response',response.data)
       return response
   } catch (error) {
       return Promise.reject(error)

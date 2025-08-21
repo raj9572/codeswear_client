@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useCallback, useEffect, useState } from 'react'
 import { FcClearFilters } from 'react-icons/fc'
 import Product from '../components/Product'
